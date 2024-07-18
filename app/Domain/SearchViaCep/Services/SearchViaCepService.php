@@ -31,7 +31,7 @@ class SearchViaCepService
             foreach ($ceps as $cep) {
                 $response = $this->searchAddress->findCep($cep);
                 $collectionAddress->push($addressFactory->getAddress(
-                    cep: $response['cep'] ?? null,
+                    cep: $response['cep'] ?? substr($cep, 0, 5) . '-' . substr($cep, 5, 3),
                     label: $response['label'] ?? null,
                     logradouro: $response['logradouro'] ?? null,
                     complemento: $response['complemento'] ?? null,
